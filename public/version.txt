@@ -1,5 +1,7 @@
 Spehar Mandel Consulting
-Version: v2026.06.08-1441
-Updated: 2026-06-08 14:41 ET
-Contact form: private /api/contact
+Version: v2026.06.08-1450
+Updated: 2026-06-08 14:50 ET
+Contact form: FormSubmit ajax
 Public email links: removed
+Mailto fallback: removed
+Destination: Noah Mandel
