@@ -1,1 +1,1 @@
-Hi what are you ding reading this? go have a beer.
+Hi what are you doing reading this? go have a beer.
