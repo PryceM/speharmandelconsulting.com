@@ -1,1 +1,6 @@
-CHATGPT -- put info here
+Spehar Mandel Consulting
+Version: v2026.06.08-1459
+Updated: 2026-06-08 14:59 ET
+Live marker path: /version.txt
+Contact form target: Noah Mandel
+Status: fixing form routing now
