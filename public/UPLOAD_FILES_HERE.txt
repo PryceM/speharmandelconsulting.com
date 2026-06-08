@@ -1,0 +1,9 @@
+Upload the saved Noah / Spehar Mandel Consulting website files into this public folder.
+
+Use this folder for:
+- index.html
+- the Save Page As asset folder
+- images
+- css/js files
+
+Cloudflare Pages can then use public as the output/static folder.
