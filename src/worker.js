@@ -53,7 +53,7 @@ async function handleContact(request, env) {
     },
     body: JSON.stringify({
       from: env.FORM_FROM || 'Spehar Mandel Consulting <onboarding@resend.dev>',
-      to: [env.FORM_TO || 'Noah.Z.Mandel@gmail.com'],
+      to: [env.FORM_TO || 'noah.z.mandel@gmail.com'],
       reply_to: email,
       subject,
       text
