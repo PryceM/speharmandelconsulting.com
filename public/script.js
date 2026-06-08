@@ -64,20 +64,57 @@ const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
 
 const contactForm = document.getElementById('contact-form');
+const formStatus = document.getElementById('form-status');
+
+function setFormStatus(message, isError = false) {
+  if (!formStatus) return;
+  formStatus.textContent = message;
+  formStatus.dataset.state = isError ? 'error' : 'ok';
+}
+
 if (contactForm) {
-  contactForm.addEventListener('submit', (event) => {
+  contactForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-    const name = document.getElementById('contact-name')?.value.trim() || '';
-    const email = document.getElementById('contact-email')?.value.trim() || '';
-    const problem = document.getElementById('contact-problem')?.value.trim() || '';
-    const subject = 'Spehar Mandel Consulting inquiry';
-    const body = [
-      'Name: ' + name,
-      'Email: ' + email,
-      '',
-      'What is the problem?',
-      problem
-    ].join('\n');
-    window.location.href = 'mailto:Noah.Z.Mandel@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const payload = {
+      name: document.getElementById('contact-name')?.value.trim() || '',
+      email: document.getElementById('contact-email')?.value.trim() || '',
+      problem: document.getElementById('contact-problem')?.value.trim() || ''
+    };
+
+    if (!payload.name || !payload.email || !payload.problem) {
+      setFormStatus('Please fill out all three fields before sending.', true);
+      return;
+    }
+
+    try {
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+      }
+      setFormStatus('Sending securely...');
+
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || !result.ok) {
+        throw new Error(result.error || 'The message could not be sent.');
+      }
+
+      contactForm.reset();
+      setFormStatus('Message sent. Noah will receive it by email.');
+    } catch (error) {
+      setFormStatus(error.message || 'The message could not be sent. Please try again.', true);
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send the Problem';
+      }
+    }
   });
 }
