@@ -1,5 +1,7 @@
 Spehar Mandel Consulting
-Version: v2026.06.09-1341
-Updated: 2026-06-09 13:41 ET
-Expected live path: /version.txt (S7)
+Version: PUBLIC-VTEST-2026.06.09-B
+Updated: 2026-06-09 ET
+Modified by: ChatGPT
+Note: version routing test — public assets version.txt.
+Expected live path: /version.txt
 Contact form target: Noah Mandel
