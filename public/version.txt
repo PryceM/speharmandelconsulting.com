@@ -1,7 +1,7 @@
 Spehar Mandel Consulting
-Version: v2026.06.08-1450
-Updated: 2026-06-08 14:50 ET
-Contact form: FormSubmit ajax
-Public email links: removed
-Mailto fallback: removed
-Destination: Noah Mandel
+Version: v2026.06.09-0902
+Updated: 2026-06-09 09:02 ET
+Live marker path: /version.txt
+Public marker path: /public/version.txt
+Contact form target: Noah Mandel
+Status: public version marker corrected
