@@ -1,7 +1,7 @@
 Spehar Mandel Consulting
-Version: PUBLIC-VTEST-2026.06.09-B
+Version: PUBLIC-FINALPROOF-2026.06.09-E
 Updated: 2026-06-09 ET
 Modified by: ChatGPT
-Note: version routing test — public assets version.txt.
+Note: final version routing proof - public assets version file.
 Expected live path: /version.txt
 Contact form target: Noah Mandel
