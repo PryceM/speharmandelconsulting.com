@@ -1,7 +1,7 @@
 Spehar Mandel Consulting
-Version: v2026.06.09-0910
-Updated: 2026-06-09 09:10 ET
+Version: ROOT-VTEST-2026.06.09-A
+Updated: 2026-06-09 ET
 Modified by: ChatGPT
-Note: four-site version audit marker update.
+Note: version routing test — root repository version.txt.
 Expected live path: /version.txt
 Contact form target: Noah Mandel
