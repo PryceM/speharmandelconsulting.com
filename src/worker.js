@@ -19,47 +19,47 @@ export default {
 };
 
 async function handleContact(request, env) {
-  let data;
+  let data = {};
   try {
-    data = await request.json();
+    const contentType = request.headers.get('content-type') || '';
+    if (contentType.includes('application/json')) {
+      data = await request.json();
+    } else {
+      const form = await request.formData();
+      data = Object.fromEntries(form.entries());
+    }
   } catch {
     return json({ ok: false, error: 'Invalid form submission.' }, 400);
   }
 
   const name = clean(data.name);
   const email = clean(data.email);
-  const problem = String(data.problem || '').trim();
+  const message = String(data.message || data.problem || '').trim();
+  const honey = clean(data._honey || data.website);
+  const recipient = clean(env.CONTACT_EMAIL || env.FORMSUBMIT_EMAIL || 'noah.z.mandel@gmail.com');
 
-  if (!name || !email || !problem) return json({ ok: false, error: 'Please fill out all three fields.' }, 400);
+  if (honey) return json({ ok: true });
+  if (!name || !email || !message) return json({ ok: false, error: 'Please fill out all three fields.' }, 400);
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json({ ok: false, error: 'Please enter a valid email address.' }, 400);
-  if (!env.RESEND_API_KEY) return json({ ok: false, error: 'Email service is not configured yet.' }, 500);
 
-  const subject = `Spehar Mandel Consulting inquiry from ${name}`;
-  const text = [
-    'New Spehar Mandel Consulting website inquiry',
-    '',
-    `Name: ${name}`,
-    `Email: ${email}`,
-    '',
-    'What is the problem?',
-    problem
-  ].join('\n');
+  const body = new FormData();
+  body.append('name', name);
+  body.append('email', email);
+  body.append('message', message);
+  body.append('_subject', env.CONTACT_SUBJECT || `Spehar Mandel Consulting inquiry from ${name}`);
+  body.append('_template', 'table');
+  body.append('_captcha', 'false');
 
-  const response = await fetch('https://api.resend.com/emails', {
+  const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(recipient)}`, {
     method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${env.RESEND_API_KEY}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      from: env.FORM_FROM || 'Spehar Mandel Consulting <onboarding@resend.dev>',
-      to: [env.FORM_TO || 'noah.z.mandel@gmail.com'],
-      reply_to: email,
-      subject,
-      text
-    })
+    headers: { Accept: 'application/json' },
+    body
   });
 
-  if (!response.ok) return json({ ok: false, error: 'The message could not be sent yet.' }, 502);
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok || result.success === false) {
+    return json({ ok: false, error: 'The message could not be sent right now.' }, 502);
+  }
+
   return json({ ok: true });
 }
