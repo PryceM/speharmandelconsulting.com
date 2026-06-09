@@ -1,5 +1,5 @@
 Spehar Mandel Consulting
-Version: SMC-LIVECHECK-20260609-F
+Version: Final test: all four sites can be updated.
 Updated: 2026-06-09 ET
 Check file: public/version.txt
 Live URL: /version.txt
