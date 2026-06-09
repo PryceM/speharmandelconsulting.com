@@ -1,3 +1,13 @@
+const VERSION_TEXT = [
+  'Spehar Mandel Consulting',
+  'Version: v2026.06.09-1259',
+  'Updated: 2026-06-09 12:59 ET',
+  'Modified by: ChatGPT',
+  'Note: Worker-served version marker after GitHub/Cloudflare reconnect.',
+  'Expected live path: /version.txt',
+  'Contact form target: Noah Mandel'
+].join('\n') + '\n';
+
 const json = (data, status = 200) => new Response(JSON.stringify(data), {
   status,
   headers: { 'Content-Type': 'application/json; charset=utf-8' }
@@ -8,6 +18,15 @@ const clean = (value) => String(value || '').replace(/[\r\n]+/g, ' ').trim();
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    if (url.pathname === '/version.txt') {
+      return new Response(VERSION_TEXT, {
+        headers: {
+          'Content-Type': 'text/plain; charset=utf-8',
+          'Cache-Control': 'no-store'
+        }
+      });
+    }
 
     if (url.pathname === '/api/contact') {
       if (request.method !== 'POST') return json({ ok: false, error: 'Use POST.' }, 405);
