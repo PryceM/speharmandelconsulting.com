@@ -1,7 +1,5 @@
 Spehar Mandel Consulting
-Version: ROOT-FINALPROOF-2026.06.09-D
+Version: Final test: all four sites can be updated.
 Updated: 2026-06-09 ET
-Modified by: ChatGPT
-Note: final version routing proof - root repository version.txt.
-Expected live path: /version.txt
-Contact form target: Noah Mandel
+Check file: root version.txt
+Live URL: /version.txt
