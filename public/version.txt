@@ -1,7 +1,5 @@
 Spehar Mandel Consulting
-Version: v2026.06.09-0910
-Updated: 2026-06-09 09:10 ET
-Modified by: ChatGPT
-Note: four-site version audit marker update.
-Expected live path: /version.txt
+Version: v2026.06.09-1341
+Updated: 2026-06-09 13:41 ET
+Expected live path: /version.txt (S7)
 Contact form target: Noah Mandel
