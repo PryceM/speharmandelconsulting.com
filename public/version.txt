@@ -1,7 +1,5 @@
 Spehar Mandel Consulting
-Version: PUBLIC-FINALPROOF-2026.06.09-E
+Version: SMC-LIVECHECK-20260609-F
 Updated: 2026-06-09 ET
-Modified by: ChatGPT
-Note: final version routing proof - public assets version file.
-Expected live path: /version.txt
-Contact form target: Noah Mandel
+Check file: public/version.txt
+Live URL: /version.txt
