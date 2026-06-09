@@ -1,6 +1,7 @@
 Spehar Mandel Consulting
-Version: v2026.06.08-1459
-Updated: 2026-06-08 14:59 ET
+Version: v2026.06.09-0902
+Updated: 2026-06-09 09:02 ET
 Live marker path: /version.txt
+Public marker path: /public/version.txt
 Contact form target: Noah Mandel
-Status: fixing form routing now
+Status: root version marker corrected
