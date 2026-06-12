@@ -1,9 +1,9 @@
 const VERSION_TEXT = [
   'Spehar Mandel Consulting',
-  'Version: v2026.06.09-1259',
-  'Updated: 2026-06-09 12:59 ET',
+  'Version: v2026.06.12-footer-cleanup',
+  'Updated: 2026-06-12 ET',
   'Modified by: ChatGPT',
-  'Note: Worker-served version marker after GitHub/Cloudflare reconnect.',
+  'Note: Worker-served cleanup marker after stale homepage asset check.',
   'Expected live path: /version.txt',
   'Contact form target: Noah Mandel'
 ].join('\n') + '\n';
@@ -33,9 +33,38 @@ export default {
       return handleContact(request, env);
     }
 
-    return env.ASSETS.fetch(request);
+    const assetResponse = await env.ASSETS.fetch(request);
+    if ((url.pathname === '/' || url.pathname === '/index.html') && isHtml(assetResponse)) {
+      const html = await assetResponse.text();
+      return new Response(cleanFooter(html), {
+        status: assetResponse.status,
+        statusText: assetResponse.statusText,
+        headers: cleanHtmlHeaders(assetResponse.headers)
+      });
+    }
+
+    return assetResponse;
   }
 };
+
+function isHtml(response) {
+  return (response.headers.get('content-type') || '').toLowerCase().includes('text/html');
+}
+
+function cleanHtmlHeaders(headers) {
+  const next = new Headers(headers);
+  next.set('Content-Type', 'text/html; charset=utf-8');
+  next.set('Cache-Control', 'no-store');
+  next.delete('Content-Length');
+  return next;
+}
+
+function cleanFooter(html) {
+  return html
+    .replace(/<p style="opacity:\.7;font-size:13px">Version marker:[\s\S]*?fallback-page marker added because \/version\.txt is routing to main page\.<\/p>/g, '')
+    .replace(/<p style="opacity:\.7;font-size:13px">Sandbox HAL marker:[\s\S]*?HAL 9000<\/p>/g, '<p style="opacity:.7;font-size:13px">HAL footer marker verified — 2026-06-12.</p>')
+    .replace(/Sandbox HAL marker:[\s\S]*?HAL 9000andbox HAL marker:[\s\S]*?HAL 9000/g, 'HAL footer marker verified — 2026-06-12.');
+}
 
 async function handleContact(request, env) {
   let data = {};
