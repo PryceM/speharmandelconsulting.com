@@ -1,5 +1,7 @@
 Spehar Mandel Consulting
-Version: Final test: all four sites can be updated.
-Updated: 2026-06-09 ET
+Version: v2026.06.15-smc-contact-routing
+Updated: 2026-06-15 ET
+Modified by: ChatGPT
+Note: finalized Worker-first /api/contact routing; removed direct FormSubmit override from public index.
 Check file: public/version.txt
 Live URL: /version.txt
