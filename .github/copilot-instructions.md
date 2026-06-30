@@ -1,0 +1,9 @@
+- Always cd to C:\Users\pmandel.ATTAIN\GitHub\speharmandelconsulting.com before Git, Wrangler, or website commands.
+- Never assume the terminal is already in the correct repo.
+- Use .\pryce.cmd check before edits or deploys.
+- Use .\pryce.cmd preview for local review when needed.
+- Production deploy requires explicit Pryce approval.
+- Preserve the existing contact architecture: public/index.html posts to /api/contact and src/worker.js handles delivery.
+- Do not replace the Worker-routed contact flow with direct FormSubmit, another email service, or a different route unless Pryce explicitly approves the change.
+- Preserve public asset paths such as styles.css and script.js.
+- Do not deploy from Downloads, extracted ZIP folders, image folders, or C:\WINDOWS\system32.
