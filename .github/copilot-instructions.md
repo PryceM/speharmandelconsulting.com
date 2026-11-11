@@ -3,7 +3,7 @@
 - Use .\pryce.cmd check before edits or deploys.
 - Use .\pryce.cmd preview for local review when needed.
 - Production deploy requires explicit Pryce approval.
-- Preserve the existing contact architecture: public/index.html posts to /api/contact and src/worker.js handles delivery.
-- Do not replace the Worker-routed contact flow with direct FormSubmit, another email service, or a different route unless Pryce explicitly approves the change.
+- The referral-only redesign uses a plain mailto link to speharmandelconsulting@gmail.com in public/index.html; do not reintroduce an intake form without Pryce's approval.
+- Keep src/worker.js and the legacy /api/contact/FormSubmit routing intact but unused. Do not alter the Worker, recipient fallback, or delivery service without Pryce's approval.
 - Preserve public asset paths such as styles.css and script.js.
 - Do not deploy from Downloads, extracted ZIP folders, image folders, or C:\WINDOWS\system32.
