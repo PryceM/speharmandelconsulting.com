@@ -25,7 +25,7 @@ button { cursor: pointer; }
 .site-header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid rgba(23, 49, 58, .10); background: rgba(246,245,241,.95); backdrop-filter: blur(14px); }
 .header-inner { min-height: 94px; display: flex; justify-content: space-between; align-items: center; gap: 26px; }
 .brand { display: inline-flex; align-items: center; gap: 15px; flex-shrink: 0; }
-.brand-symbol { display: grid; place-items: center; width: 50px; height: 50px; border: 1px solid var(--ink); font-family: Georgia, "Times New Roman", serif; font-size: 18px; font-weight: 700; letter-spacing: -.085em; }
+.brand-symbol { display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border: 1px solid var(--ink); font-family: Georgia, "Times New Roman", serif; font-size: 18px; font-weight: 700; letter-spacing: -.085em; }
 .symbol-divider { color: var(--accent); padding-inline: 2px; }
 .brand-text { display: grid; line-height: 1.17; }
 .brand-text strong { font-size: 17px; letter-spacing: -.025em; }
