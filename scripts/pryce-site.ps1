@@ -80,7 +80,10 @@ function Run-Check {
 
     $index = Get-Content -Path $IndexPath -Raw
     $worker = Get-Content -Path (Join-Path $RepoPath 'src\worker.js') -Raw
-    if ($index -notmatch 'action="/api/contact"|action=''/api/contact''') { throw 'Missing /api/contact form action.' }
+    $hasReferralEmail = $index -match 'href="mailto:speharmandelconsulting@gmail\.com"'
+    $hasWorkerForm = $index -match 'action="/api/contact"|action=''/api/contact'''
+    if (-not $hasReferralEmail -and -not $hasWorkerForm) { throw 'Missing expected contact method (referral email or Worker form).' }
+    if ($hasReferralEmail -and $index -match '<form\b') { throw 'Referral-only email page must not contain an intake form.' }
     if ($worker -notmatch 'formsubmit\.co/ajax' -or $worker -notmatch 'noah\.z\.mandel@gmail\.com') { throw 'Worker contact routing markers missing.' }
     if ($index -notmatch 'styles\.css' -or $index -notmatch 'script\.js') { throw 'Missing expected public asset references.' }
     Write-Host 'Check complete.'
